@@ -9,14 +9,26 @@
 
 apply plugin: 'java'
 apply plugin: 'idea'
+apply plugin: 'application'
+mainClassName = 'org.pathirage.calcite.tutorial.planner.SimpleQueryPlanner'
 
 repositories {
   jcenter()
   mavenCentral()
+  maven {
+      url "http://maven.aliyun.com/nexus/content/groups/public"
+  }
+  maven {
+      url "https://maven.aliyun.com/repository/spring-plugin"
+  }
+  maven {
+      url "https://repo.spring.io/plugins-release"
+  }
 }
 
 dependencies {
-  compile 'org.apache.calcite:calcite-core:1.6.0'
+  compile "org.pentaho:pentaho-aggdesigner-algorithm:5.1.5-jhyde"
+  compile 'org.apache.calcite:calcite-core:1.36.0'
   compile 'org.slf4j:slf4j-api:1.7.13'
   testCompile 'junit:junit:4.12'
 }
