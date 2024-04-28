@@ -6,6 +6,7 @@ import org.apache.calcite.config.CalciteConnectionConfig;
 import org.apache.calcite.jdbc.CalciteConnection;
 import org.apache.calcite.linq4j.Enumerator;
 import org.apache.calcite.linq4j.Queryable;
+import org.apache.calcite.jdbc.CalcitePrepare.Context;
 import org.apache.calcite.linq4j.tree.Expression;
 import org.apache.calcite.schema.SchemaPlus;
 import org.apache.calcite.tools.Frameworks;
@@ -333,5 +334,9 @@ public class SimpleCalciteConnection implements CalciteConnection {
   @Override
   public boolean isWrapperFor(Class<?> iface) throws SQLException {
     return false;
+  }
+
+  @Override public Context createPrepareContext() {
+    return null;
   }
 }

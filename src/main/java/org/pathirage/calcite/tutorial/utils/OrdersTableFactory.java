@@ -9,7 +9,11 @@ import org.apache.calcite.rel.type.RelDataTypeFactory;
 import org.apache.calcite.rel.type.RelProtoDataType;
 import org.apache.calcite.schema.*;
 import org.apache.calcite.sql.type.SqlTypeName;
+import org.apache.calcite.config.CalciteConnectionConfig;
+import org.apache.calcite.sql.SqlCall;
+import org.apache.calcite.sql.SqlNode;
 
+import org.checkerframework.checker.nullness.qual.Nullable;
 import java.util.Map;
 
 public class OrdersTableFactory implements TableFactory<Table> {
@@ -59,6 +63,16 @@ public class OrdersTableFactory implements TableFactory<Table> {
     @Override
     public Schema.TableType getJdbcTableType() {
       return Schema.TableType.TABLE;
+    }
+
+    @Override public boolean rolledUpColumnValidInsideAgg(
+        String column, SqlCall call, @Nullable SqlNode parent,
+        @Nullable CalciteConnectionConfig config) {
+      return false;
+    }
+
+    @Override public boolean isRolledUp(String column) {
+      return false;
     }
   }
 }
